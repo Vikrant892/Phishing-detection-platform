@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Advanced cybersecurity phishing detection platform with real-time analysis and comprehensive threat management">
+    <meta name="author" content="Phishing Detection Platform">
+    
+    <title>Dashboard - Phishing Detection Platform</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    
+    <style>
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+            background-color: #f8f9fc;
+        }
+        
+        .topbar {
+            background-color: white;
+            border-bottom: 1px solid #e3e6f0;
+            padding: 1rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            border-radius: 0.35rem;
+        }
+        
+        .threat-high { color: #e74a3b; }
+        .threat-medium { color: #f6c23e; }
+        .threat-low { color: #1cc88a; }
+        
+        .sidebar-brand {
+            padding: 1.5rem 1rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar-nav {
+            padding: 0;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link i {
+            margin-right: 0.5rem;
+            width: 1rem;
+        }
+        
+        .upload-area {
+            border: 2px dashed #e3e6f0;
+            border-radius: 0.35rem;
+            padding: 3rem;
+            text-align: center;
+            background-color: #f8f9fc;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #4e73df;
+            background-color: rgba(78, 115, 223, 0.05);
+        }
+        
+        .upload-area.dragover {
+            border-color: #4e73df;
+            background-color: rgba(78, 115, 223, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Phishing Detection</div>
+        </div>
+        
+        <hr class="my-0" style="border-color: rgba(255, 255, 255, 0.2);">
+        
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#dashboard" onclick="showSection('dashboard')">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#upload" onclick="showSection('upload')">
+                    <i class="fas fa-fw fa-upload"></i>
+                    <span>Email Analysis</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#reports" onclick="showSection('reports')">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3 mb-0 text-gray-800">Phishing Detection Platform</h1>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-success me-3">
+                        <i class="fas fa-circle fa-sm"></i> API Online
+                    </span>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-shield"></i> Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page Content -->
+        <div class="container-fluid p-4">
+            
+            <!-- Dashboard Section -->
+            <div id="dashboard-section">
+                <div class="row">
+                    <!-- Statistics Cards -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total Analyses</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-analyses">1,247</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-envelope fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                            High Risk Threats</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="high-risk-count">42</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Average Threat Score</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="avg-threat-score">23.5</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Quarantined</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="quarantined-count">42</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-shield-alt fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Analyses -->
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Recent Email Analyses</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Subject</th>
+                                        <th>Sender</th>
+                                        <th>Threat Score</th>
+                                        <th>Risk Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-analyses">
+                                    <tr>
+                                        <td>13:05</td>
+                                        <td>Urgent: Verify Your Account</td>
+                                        <td>security@fakebank.com</td>
+                                        <td>85</td>
+                                        <td><span class="badge bg-danger">HIGH</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>12:58</td>
+                                        <td>Monthly Statement Ready</td>
+                                        <td>statements@legitbank.com</td>
+                                        <td>15</td>
+                                        <td><span class="badge bg-success">LOW</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upload Section -->
+            <div id="upload-section" style="display: none;">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="m-0 font-weight-bold text-primary">Email Analysis</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="upload-area" onclick="document.getElementById('fileInput').click()" 
+                                     ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                    <h4>Drop Email Files Here</h4>
+                                    <p class="text-muted">or click to browse (.eml, .msg, .txt files)</p>
+                                    <input type="file" id="fileInput" accept=".eml,.msg,.txt,.csv" style="display: none;" onchange="analyzeFile(this.files[0])">
+                                </div>
+                                
+                                <!-- Analysis Results -->
+                                <div id="analysis-results" style="display: none;" class="mt-4">
+                                    <div class="alert alert-info">
+                                        <h5><i class="fas fa-search"></i> Analysis Results</h5>
+                                        <div id="analysis-content"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Text Analysis -->
+                                <div class="mt-4">
+                                    <h6>Or Analyze Text Content Directly:</h6>
+                                    <textarea class="form-control" id="textContent" rows="5" placeholder="Paste email content here..."></textarea>
+                                    <button class="btn btn-primary mt-2" onclick="analyzeText()">
+                                        <i class="fas fa-search"></i> Analyze Text
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reports Section -->
+            <div id="reports-section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Analysis Reports</h6>
+                    </div>
+                    <div class="card-body">
+                        <p>Reports functionality will be implemented here.</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-left-info">
+                                    <div class="card-body">
+                                        <h6>Daily Report</h6>
+                                        <p class="text-muted">Today's threat analysis summary</p>
+                                        <button class="btn btn-info btn-sm">Generate</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-left-warning">
+                                    <div class="card-body">
+                                        <h6>Weekly Report</h6>
+                                        <p class="text-muted">7-day threat trend analysis</p>
+                                        <button class="btn btn-warning btn-sm">Generate</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-left-success">
+                                    <div class="card-body">
+                                        <h6>Monthly Report</h6>
+                                        <p class="text-muted">Monthly security overview</p>
+                                        <button class="btn btn-success btn-sm">Generate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        
+        function showSection(sectionName) {
+            // Hide all sections
+            document.getElementById('dashboard-section').style.display = 'none';
+            document.getElementById('upload-section').style.display = 'none';
+            document.getElementById('reports-section').style.display = 'none';
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').style.display = 'block';
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            event.target.closest('.nav-link').classList.add('active');
+        }
+        
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.currentTarget.classList.add('dragover');
+        }
+        
+        function handleDragLeave(event) {
+            event.currentTarget.classList.remove('dragover');
+        }
+        
+        function handleDrop(event) {
+            event.preventDefault();
+            event.currentTarget.classList.remove('dragover');
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                analyzeFile(files[0]);
+            }
+        }
+        
+        async function analyzeFile(file) {
+            if (!file) return;
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                showLoading('Analyzing email file...');
+                
+                const response = await fetch(`${API_BASE_URL}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayAnalysisResults(result.data);
+                } else {
+                    showError(result.error || 'Analysis failed');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+        
+        async function analyzeText() {
+            const content = document.getElementById('textContent').value.trim();
+            if (!content) {
+                alert('Please enter some text to analyze.');
+                return;
+            }
+            
+            try {
+                showLoading('Analyzing text content...');
+                
+                const response = await fetch(`${API_BASE_URL}/analyze-text`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content: content })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayAnalysisResults(result.data);
+                } else {
+                    showError(result.error || 'Analysis failed');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+        
+        function displayAnalysisResults(data) {
+            const resultsDiv = document.getElementById('analysis-results');
+            const contentDiv = document.getElementById('analysis-content');
+            
+            const threatClass = data.threat_level === 'HIGH' ? 'danger' : 
+                               data.threat_level === 'MEDIUM' ? 'warning' : 'success';
+            
+            contentDiv.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Analysis ID: ${data.analysis_id}</h6>
+                        <p><strong>Subject:</strong> ${data.subject || 'N/A'}</p>
+                        <p><strong>Sender:</strong> ${data.sender || 'N/A'}</p>
+                        <p><strong>Analyzed:</strong> ${new Date(data.analyzed_at).toLocaleString()}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Threat Assessment</h6>
+                        <p><strong>Score:</strong> ${data.threat_score}/100</p>
+                        <p><strong>Risk Level:</strong> <span class="badge bg-${threatClass}">${data.threat_level}</span></p>
+                        <div class="progress">
+                            <div class="progress-bar bg-${threatClass}" style="width: ${data.threat_score}%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                ${data.threats_found && data.threats_found.length > 0 ? `
+                    <div class="mt-3">
+                        <h6>Threats Detected:</h6>
+                        <ul class="list-group">
+                            ${data.threats_found.map(threat => `<li class="list-group-item">${threat}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : '<p class="mt-3">No specific threats detected.</p>'}
+            `;
+            
+            resultsDiv.style.display = 'block';
+            hideLoading();
+        }
+        
+        function showLoading(message) {
+            // Simple loading indicator
+            const resultsDiv = document.getElementById('analysis-results');
+            const contentDiv = document.getElementById('analysis-content');
+            contentDiv.innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">${message}</p>
+                </div>
+            `;
+            resultsDiv.style.display = 'block';
+        }
+        
+        function hideLoading() {
+            // Loading will be replaced by results
+        }
+        
+        function showError(message) {
+            const resultsDiv = document.getElementById('analysis-results');
+            const contentDiv = document.getElementById('analysis-content');
+            contentDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    <h6><i class="fas fa-exclamation-triangle"></i> Error</h6>
+                    <p>${message}</p>
+                </div>
+            `;
+            resultsDiv.style.display = 'block';
+        }
+        
+        // Load dashboard stats on page load
+        async function loadDashboardStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/dashboard-stats`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    const data = result.data;
+                    document.getElementById('total-analyses').textContent = data.total_analyses.toLocaleString();
+                    document.getElementById('high-risk-count').textContent = data.risk_distribution.HIGH;
+                    document.getElementById('avg-threat-score').textContent = data.avg_threat_score;
+                    document.getElementById('quarantined-count').textContent = data.quarantined_count;
+                    
+                    // Update recent analyses
+                    updateRecentAnalyses(data.recent_analyses);
+                }
+            } catch (error) {
+                console.error('Failed to load dashboard stats:', error);
+            }
+        }
+        
+        function updateRecentAnalyses(analyses) {
+            const tbody = document.getElementById('recent-analyses');
+            tbody.innerHTML = '';
+            
+            analyses.forEach(analysis => {
+                const badgeClass = analysis.threat_level === 'HIGH' ? 'bg-danger' : 
+                                  analysis.threat_level === 'MEDIUM' ? 'bg-warning' : 'bg-success';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${new Date(analysis.created_at).toLocaleTimeString()}</td>
+                    <td>${analysis.email_subject}</td>
+                    <td>${analysis.sender}</td>
+                    <td>${analysis.threat_score}</td>
+                    <td><span class="badge ${badgeClass}">${analysis.threat_level}</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardStats();
+            
+            // Refresh dashboard every 30 seconds
+            setInterval(loadDashboardStats, 30000);
+        });
+    </script>
+</body>
+</html>

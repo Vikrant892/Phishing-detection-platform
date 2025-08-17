@@ -1,0 +1,79 @@
+Return-Path: <security@paypal-verify.net>
+Delivered-To: user@example.com
+Received: by 10.25.123.45 with SMTP id abc123def456;
+        Sat, 17 Aug 2025 10:30:00 -0700 (PDT)
+X-Google-Smtp-Source: ABCD1234567890
+X-Received: by 2001:db8:85a3::8a2e:370:7334 with SMTP id efg789hij012;
+        Sat, 17 Aug 2025 10:30:00 -0700 (PDT)
+From: PayPal Security Team <security@paypal-verify.net>
+To: user@example.com
+Subject: URGENT: Account will be suspended - Verify immediately
+Date: Sat, 17 Aug 2025 10:30:00 -0700
+Message-ID: <20250817173000.12345@paypal-verify.net>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="boundary123456"
+
+--boundary123456
+Content-Type: text/plain; charset=UTF-8
+
+URGENT ACTION REQUIRED
+
+Your PayPal account will be suspended in 24 hours due to suspicious activity detected.
+
+Click here immediately to verify your account: http://secure-verify.paypal-update.net/login
+
+Failure to verify will result in permanent account closure.
+
+PayPal Security Team
+
+--boundary123456
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PayPal Security Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .urgent { color: red; font-weight: bold; }
+        .button { background-color: #0070ba; color: white; padding: 10px 20px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h1 class="urgent">URGENT: Account Verification Required</h1>
+        
+        <p>Dear PayPal Customer,</p>
+        
+        <p class="urgent">Your account will be suspended immediately unless you verify your identity.</p>
+        
+        <p>We have detected <strong>unauthorized transaction</strong> attempts on your account. 
+        To protect your funds, we need you to <strong>verify your account immediately</strong>.</p>
+        
+        <div style="background-color: #fff2cc; padding: 15px; border-left: 4px solid #f1c40f;">
+            <p><strong>Warning:</strong> Failure to verify within 24 hours will result in permanent account closure.</p>
+        </div>
+        
+        <p>Please <strong>click here immediately</strong> to secure your account:</p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="http://bit.ly/paypal-verify-2025" class="button">Verify Account Now</a>
+        </div>
+        
+        <p>You will need to <strong>enter your password</strong> and <strong>confirm your login</strong> details to complete the verification process.</p>
+        
+        <div style="background-color: #ffebee; padding: 15px; border-left: 4px solid #e74c3c;">
+            <p><strong>URGENT:</strong> This verification expires in 24 hours. Act now or lose access to your account permanently.</p>
+        </div>
+        
+        <p>If you have any questions, contact our security team immediately at security@paypal-verify.net</p>
+        
+        <hr>
+        <p style="font-size: 12px; color: #666;">
+            This message was sent from PayPal Security Team to protect your account from suspicious activity detected.
+        </p>
+    </div>
+</body>
+</html>
+
+--boundary123456--

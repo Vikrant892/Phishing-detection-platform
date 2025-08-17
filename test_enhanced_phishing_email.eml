@@ -1,0 +1,103 @@
+Return-Path: <security@paypal-verify.net>
+Delivered-To: user@example.com
+Received: by 10.25.123.45 with SMTP id abc123def456;
+        Sat, 17 Aug 2025 10:30:00 -0700 (PDT)
+X-MS-Exchange-CrossTenant-Id: XFCjGeORft8x7Ol
+X-MS-Exchange-CrossTenant-UserPrincipalName: suspicious.user@crosstenant.com
+X-MS-Exchange-CrossTenant-Network: external-tenant-bypass
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:15.1234567
+X-Originating-IP: [192.168.1.100]
+X-Remote-IP: 203.0.113.42
+X-Sender-IP: 198.51.100.99
+X-Google-Smtp-Source: ABCD1234567890
+X-Received: by 2001:db8:85a3::8a2e:370:7334 with SMTP id efg789hij012;
+        Sat, 17 Aug 2025 10:30:00 -0700 (PDT)
+Authentication-Results: spf=fail smtp.mailfrom=paypal-verify.net
+From: PayPal Security Team <security@paypal-verify.net>
+To: user@example.com
+Subject: URGENT: Cross-tenant authentication required - XFCjGeORft8x7Ol
+Date: Sat, 17 Aug 2025 10:30:00 -0700
+Message-ID: <20250817173000.12345@paypal-verify.net>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="boundary123456"
+
+--boundary123456
+Content-Type: text/plain; charset=UTF-8
+
+URGENT CROSS-TENANT AUTHENTICATION
+
+Your PayPal account requires immediate crosstenant authentication due to suspicious activity detected.
+
+Authorization Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+Click here immediately to verify your account: http://secure-verify.paypal-update.net/login
+
+Exchange Online Protection has detected tenant isolation bypass attempts.
+Bearer Token: Bearer ABC123DEF456GHI789JKL012MNO345PQR678STU901VWX234YZ
+
+Failure to verify will result in permanent account closure.
+
+SSH Key Found: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7vbqajDw+3QF2Og==
+
+PayPal Security Team
+
+--boundary123456
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PayPal Cross-Tenant Security Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .urgent { color: red; font-weight: bold; }
+        .token { background-color: #f0f0f0; padding: 5px; font-family: monospace; }
+        .button { background-color: #0070ba; color: white; padding: 10px 20px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h1 class="urgent">URGENT: Cross-Tenant Authentication Required</h1>
+        
+        <p>Dear PayPal Customer,</p>
+        
+        <p class="urgent">Your account requires immediate crosstenant authentication due to Exchange Online Protection violations.</p>
+        
+        <p>We have detected <strong>unauthorized transaction</strong> attempts and <strong>tenant isolation bypass</strong> on your account. 
+        To protect your funds, we need you to <strong>verify your account immediately</strong>.</p>
+        
+        <div style="background-color: #fff2cc; padding: 15px; border-left: 4px solid #f1c40f;">
+            <p><strong>Warning:</strong> Azure AD Authentication has flagged suspicious cross-tenant access patterns.</p>
+            <p class="token">Token ID: XFCjGeORft8x7Ol</p>
+            <p class="token">JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+        </div>
+        
+        <p>Please <strong>click here immediately</strong> to secure your account:</p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="http://bit.ly/paypal-verify-2025" class="button">Verify Account Now</a>
+        </div>
+        
+        <p>You will need to <strong>enter your password</strong> and <strong>confirm your login</strong> details to complete the verification process.</p>
+        
+        <div style="background-color: #ffebee; padding: 15px; border-left: 4px solid #e74c3c;">
+            <p><strong>URGENT:</strong> Office 365 security protocols require immediate action. This verification <strong>expires in 24 hours</strong>.</p>
+            <p class="token">Bearer: Bearer ABC123DEF456GHI789JKL012MNO345PQR678STU901VWX234YZ</p>
+        </div>
+        
+        <p>Exchange Online Protection has detected the following certificate:</p>
+        <pre class="token">-----BEGIN CERTIFICATE-----
+MIIDXTCCAkWgAwIBAgIJAKoK/OvD1234567890abcdefghijklmnopqrstuvwxyzABCD
+-----END CERTIFICATE-----</pre>
+        
+        <p>If you have any questions, contact our security team immediately at security@paypal-verify.net</p>
+        
+        <hr>
+        <p style="font-size: 12px; color: #666;">
+            This message was sent from PayPal Security Team to protect your account from crosstenant authentication bypass attempts.
+        </p>
+    </div>
+</body>
+</html>
+
+--boundary123456--

@@ -1,0 +1,106 @@
+Return-Path: <newsletter@company.com>
+Delivered-To: user@example.com
+Received: by 10.25.123.45 with SMTP id abc123def456;
+        Sat, 17 Aug 2025 14:30:00 -0700 (PDT)
+X-Google-Smtp-Source: ABCD1234567890
+X-Received: by 2001:db8:85a3::8a2e:370:7334 with SMTP id efg789hij012;
+        Sat, 17 Aug 2025 14:30:00 -0700 (PDT)
+From: Company Newsletter <newsletter@company.com>
+To: user@example.com
+Subject: Weekly Company Newsletter - August 2025
+Date: Sat, 17 Aug 2025 14:30:00 -0700
+Message-ID: <20250817213000.54321@company.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="boundary654321"
+
+--boundary654321
+Content-Type: text/plain; charset=UTF-8
+
+Company Newsletter - Week of August 17, 2025
+
+Dear Team,
+
+Welcome to this week's company newsletter. Here are the latest updates:
+
+1. New Product Launch
+   We're excited to announce the launch of our new product line next month.
+
+2. Team Building Event
+   Join us for a team building event on Friday, August 30th at 3 PM.
+
+3. Security Reminder
+   Please remember to use strong passwords and enable two-factor authentication.
+
+4. Office Updates
+   The office kitchen will be renovated next week. Please use the temporary setup.
+
+Thank you for your continued dedication.
+
+Best regards,
+Company Communications Team
+
+--boundary654321
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Newsletter</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .header { background-color: #f8f9fa; padding: 20px; text-align: center; }
+        .content { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .section { margin-bottom: 20px; }
+        .footer { background-color: #e9ecef; padding: 15px; text-align: center; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Company Newsletter</h1>
+        <p>Week of August 17, 2025</p>
+    </div>
+    
+    <div class="content">
+        <p>Dear Team,</p>
+        
+        <p>Welcome to this week's company newsletter. Here are the latest updates:</p>
+        
+        <div class="section">
+            <h3>1. New Product Launch</h3>
+            <p>We're excited to announce the launch of our new product line next month. 
+            This innovative solution will help our customers achieve better results.</p>
+        </div>
+        
+        <div class="section">
+            <h3>2. Team Building Event</h3>
+            <p>Join us for a team building event on Friday, August 30th at 3 PM in the main conference room. 
+            We'll have activities, refreshments, and prizes!</p>
+        </div>
+        
+        <div class="section">
+            <h3>3. Security Reminder</h3>
+            <p>Please remember to use strong passwords and enable two-factor authentication for all company accounts. 
+            Our IT team is available to help with setup if needed.</p>
+        </div>
+        
+        <div class="section">
+            <h3>4. Office Updates</h3>
+            <p>The office kitchen will be renovated next week. Please use the temporary setup on the second floor 
+            during this time. Work is expected to complete by September 1st.</p>
+        </div>
+        
+        <p>Thank you for your continued dedication to our company's success.</p>
+        
+        <p>Best regards,<br>
+        Company Communications Team</p>
+    </div>
+    
+    <div class="footer">
+        <p>This newsletter was sent to company employees. 
+        For questions, contact communications@company.com</p>
+        <p>Company Name | 123 Business St | Business City, BC 12345</p>
+    </div>
+</body>
+</html>
+
+--boundary654321--
