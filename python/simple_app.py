@@ -26,7 +26,7 @@ import traceback
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'REDACTED'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 CORS(app)
 
@@ -41,7 +41,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Database configuration
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://user:password@localhost:5432/phishing_detection')
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 # Allowed file extensions
 ALLOWED_EXTENSIONS = {'eml', 'msg', 'txt', 'csv', 'xlsx', 'xls', 'json'}
@@ -496,4 +496,4 @@ if __name__ == '__main__':
     os.makedirs('../logs', exist_ok=True)
     
     logger.info("Starting Phishing Detection Platform API...")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

@@ -31,14 +31,8 @@ function isAuthenticated() {
  * Authenticate user (simplified for demo)
  */
 function authenticate($username, $password) {
-    // Simple authentication - in production, use proper password hashing
-    $validUsers = [
-        'admin' => 'REDACTED',
-        'analyst' => 'REDACTED',
-        'operator' => 'REDACTED'
-    ];
-    
-    if (isset($validUsers[$username]) && $validUsers[$username] === $password) {
+    // Authentication handled by AuthManager class - see php/classes/AuthManager.php
+    if (AuthManager::verify($username, $password)) {
         $_SESSION['authenticated'] = true;
         $_SESSION['user_id'] = $username;
         $_SESSION['username'] = $username;

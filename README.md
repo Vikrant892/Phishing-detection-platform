@@ -78,14 +78,14 @@ phishing-detection-platform/
    ```bash
    sudo -u postgres psql
    CREATE DATABASE phishing_detection;
-   CREATE USER phishing_user WITH PASSWORD 'secure_password';
+   CREATE USER phishing_user WITH PASSWORD '<your-password>';
    GRANT ALL PRIVILEGES ON DATABASE phishing_detection TO phishing_user;
    \q
    ```
 
 4. **Set environment variable**
    ```bash
-   export DATABASE_URL="postgresql://phishing_user:secure_password@localhost:5432/phishing_detection"
+   export DATABASE_URL="postgresql://phishing_user:<your-password>@localhost:5432/phishing_detection"
    ```
 
 5. **Install Python dependencies**

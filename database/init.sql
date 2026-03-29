@@ -168,8 +168,8 @@ INSERT INTO `detection_stats` (
 
 -- Create user for application access (if not exists)
 -- Note: In production, use more secure credentials
-CREATE USER IF NOT EXISTS 'phishing_app'@'localhost' IDENTIFIED BY 'REDACTED';
-CREATE USER IF NOT EXISTS 'phishing_app'@'%' IDENTIFIED BY 'REDACTED';
+CREATE USER IF NOT EXISTS 'phishing_app'@'localhost' IDENTIFIED BY 'change_me_in_production';
+CREATE USER IF NOT EXISTS 'phishing_app'@'%' IDENTIFIED BY 'change_me_in_production';
 
 -- Grant appropriate permissions
 GRANT SELECT, INSERT, UPDATE, DELETE ON phishing_detection.* TO 'phishing_app'@'localhost';

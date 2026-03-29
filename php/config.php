@@ -14,7 +14,7 @@ session_start();
 define('DB_HOST', $_ENV['PGHOST'] ?? 'localhost');
 define('DB_NAME', $_ENV['PGDATABASE'] ?? 'phishing_detection');
 define('DB_USER', $_ENV['PGUSER'] ?? 'root');
-define('DB_PASS', $_ENV['PGPASSWORD'] ?? 'password');
+define('DB_PASS', $_ENV['PGPASSWORD'] ?? null);
 define('DB_PORT', $_ENV['PGPORT'] ?? 3306);
 
 // API configuration

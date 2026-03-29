@@ -9,16 +9,16 @@ class Config:
     """Application configuration"""
     
     # Flask configuration
-    SECRET_KEY = os.getenv('SECRET_KEY', 'REDACTED')
+    SECRET_KEY = os.getenv('SECRET_KEY')
     DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     
     # Database configuration (PostgreSQL)
-    DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://user:password@localhost:5432/phishing_detection')
+    DATABASE_URL = os.getenv('DATABASE_URL')
     DATABASE_CONFIG = {
         'host': os.getenv('PGHOST', 'localhost'),
         'database': os.getenv('PGDATABASE', 'phishing_detection'),
         'user': os.getenv('PGUSER', 'postgres'),
-        'password': os.getenv('PGPASSWORD', 'password'),
+        'password': os.getenv('PGPASSWORD'),
         'port': int(os.getenv('PGPORT', 5432))
     }
     
@@ -41,7 +41,7 @@ class Config:
     
     # Security configuration
     BCRYPT_LOG_ROUNDS = 12
-    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'REDACTED')
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
     
     # API configuration

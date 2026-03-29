@@ -9,12 +9,12 @@ class Config:
     """Base configuration class"""
     
     # Flask Configuration
-    SECRET_KEY = os.getenv('SECRET_KEY', 'REDACTED')
+    SECRET_KEY = os.getenv('SECRET_KEY')
     DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     TESTING = False
     
     # Database Configuration
-    DATABASE_URL = os.getenv('DATABASE_URL', 'mysql://root:password@localhost/phishing_detector')
+    DATABASE_URL = os.getenv('DATABASE_URL')
     SQLALCHEMY_DATABASE_URI = DATABASE_URL
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
@@ -23,7 +23,7 @@ class Config:
     MYSQL_PORT = int(os.getenv('PGPORT', 3306))
     MYSQL_DATABASE = os.getenv('PGDATABASE', 'phishing_detector')
     MYSQL_USER = os.getenv('PGUSER', 'root')
-    MYSQL_PASSWORD = os.getenv('PGPASSWORD', 'password')
+    MYSQL_PASSWORD = os.getenv('PGPASSWORD')
     
     # File Upload Configuration
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100MB max file size
@@ -45,7 +45,7 @@ class Config:
     AUTO_QUARANTINE_ENABLED = True
     
     # Security Configuration
-    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', SECRET_KEY)
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     

@@ -23,7 +23,7 @@ class DatabaseConnection {
             'port' => $_ENV['PGPORT'] ?? 3306,
             'database' => $_ENV['PGDATABASE'] ?? 'phishing_detector',
             'username' => $_ENV['PGUSER'] ?? 'root',
-            'password' => $_ENV['PGPASSWORD'] ?? 'password',
+            'password' => $_ENV['PGPASSWORD'] ?? null,
             'charset' => 'utf8mb4'
         ];
     }

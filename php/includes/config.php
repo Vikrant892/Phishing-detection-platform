@@ -13,7 +13,7 @@ date_default_timezone_set('UTC');
 // Application Configuration
 define('APP_NAME', 'Phishing Detection Platform');
 define('APP_VERSION', '1.0.0');
-define('APP_DEBUG', true);
+define('APP_DEBUG', false);
 
 // Directory Configuration
 define('ROOT_DIR', dirname(__DIR__));
@@ -35,7 +35,7 @@ define('DB_HOST', $_ENV['PGHOST'] ?? 'localhost');
 define('DB_PORT', $_ENV['PGPORT'] ?? 3306);
 define('DB_NAME', $_ENV['PGDATABASE'] ?? 'phishing_detector');
 define('DB_USER', $_ENV['PGUSER'] ?? 'root');
-define('DB_PASS', $_ENV['PGPASSWORD'] ?? 'password');
+define('DB_PASS', $_ENV['PGPASSWORD'] ?? null);
 define('DB_CHARSET', 'utf8mb4');
 
 // API Configuration
@@ -49,7 +49,7 @@ define('ALLOWED_FILE_TYPES', ['.eml', '.msg', '.txt', '.mbox', '.zip']);
 // Security Configuration
 define('SESSION_TIMEOUT', 3600); // 1 hour
 define('CSRF_TOKEN_NAME', 'csrf_token');
-define('ENCRYPTION_KEY', 'REDACTED');
+define('ENCRYPTION_KEY', getenv('ENCRYPTION_KEY') ?: null);
 
 // Threat Detection Configuration
 define('DEFAULT_RISK_THRESHOLD', 40.0);
