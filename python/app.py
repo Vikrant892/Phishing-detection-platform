@@ -27,7 +27,7 @@ import traceback
 # Initialize Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
-CORS(app)
+CORS(app, origins=os.getenv('ALLOWED_ORIGINS', 'http://localhost:3000').split(','))
 
 # Initialize logging
 logging.basicConfig(

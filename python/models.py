@@ -52,7 +52,7 @@ class Database:
                 host=os.getenv('PGHOST', 'localhost'),
                 database=os.getenv('PGDATABASE', 'phishing_detection'),
                 user=os.getenv('PGUSER', 'root'),
-                password=os.getenv('PGPASSWORD', 'password'),
+                password=os.getenv('PGPASSWORD'),
                 port=os.getenv('PGPORT', 3306),
                 autocommit=True,
                 charset='utf8mb4',
