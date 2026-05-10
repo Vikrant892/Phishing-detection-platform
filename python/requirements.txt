@@ -5,7 +5,7 @@ pandas==2.3.1
 scikit-learn==1.6.0
 reportlab==4.3.1
 xlsxwriter==3.2.0
-html2text==2025.1.14
+html2text==2025.4.15
 email-validator==2.2.0
 numpy==2.2.1
 gunicorn==23.0.0
