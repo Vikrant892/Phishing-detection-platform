@@ -17,16 +17,15 @@ import email
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import traceback
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import sqlite3
 import re
 from email_html_analyzer import EmailHTMLAnalyzer
 from database_schema import db_manager
-import traceback
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+# Avoid crashing when SECRET_KEY env is unset (e.g. ephemeral Spaces deploys).
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or os.urandom(32).hex()
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 CORS(app, origins=os.getenv('ALLOWED_ORIGINS', 'http://localhost:3000').split(','))
 
@@ -40,27 +39,24 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Database configuration
-DATABASE_URL = os.getenv('DATABASE_URL')
-
 # Allowed file extensions
 ALLOWED_EXTENSIONS = {'eml', 'msg', 'txt', 'csv', 'xlsx', 'xls', 'json'}
 
 # Initialize enhanced email analyzer
 html_analyzer = EmailHTMLAnalyzer()
 
-# Initialize database
+# Initialize database (best-effort; do not crash the app if DB init fails —
+# Spaces should still boot so users can hit the UI / health endpoint).
 try:
     db_manager.create_tables()
     logger.info("Database initialized successfully")
 except Exception as e:
-    logger.error(f"Database initialization failed: {e}")
+    logger.error(f"Database initialization failed (continuing without DB): {e}")
 
 def get_db_connection():
-    """Get database connection"""
+    """Get a SQLite database connection via the centralised manager."""
     try:
-        conn = psycopg2.connect(DATABASE_URL)
-        return conn
+        return db_manager.get_connection()
     except Exception as e:
         logger.error(f"Database connection error: {e}")
         return None
