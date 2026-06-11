@@ -131,7 +131,7 @@ class ThreatDetector:
             # Create models directory
             os.makedirs('../models', exist_ok=True)
             
-            # Sample training data (in production, this would be a larger dataset)
+            # Labelled training examples for the bundled classifier.
             training_data = [
                 ("Urgent: Verify your account immediately", 1),
                 ("Your account has been suspended", 1),
@@ -599,7 +599,7 @@ class ThreatDetector:
     
     def _is_suspicious_ip(self, ip_address: str) -> bool:
         """Check if IP address is suspicious"""
-        # This is a simplified check - in production, you'd use threat intelligence feeds
+        # Flag private IP ranges appearing in external email headers.
         suspicious_ranges = [
             '10.', '192.168.', '172.16.'  # Private IP ranges (suspicious for external email)
         ]

@@ -200,19 +200,19 @@ def create_documentation_pdf():
     story.append(Paragraph("Project Directory Structure:", subheading_style))
     file_structure = """
     phishing-detection-platform/
-    ├── python/
-    │   ├── simple_app.py              # Main Flask application
-    │   ├── email_html_analyzer.py     # Email analysis engine
-    │   ├── database_schema.py         # Database operations
-    │   ├── database_stats_tool.py     # Command-line statistics
-    │   ├── config.py                  # Configuration settings
-    │   └── static/
-    │       └── index.html             # Web interface
-    ├── test_phishing_email.eml        # Basic test sample
-    ├── test_safe_email.eml            # Safe email sample
-    ├── test_enhanced_phishing_email.eml # Advanced test sample
-    ├── uploads/                       # Temporary file storage
-    └── logs/                          # Application logs
+     python/
+        simple_app.py              # Main Flask application
+        email_html_analyzer.py     # Email analysis engine
+        database_schema.py         # Database operations
+        database_stats_tool.py     # Command-line statistics
+        config.py                  # Configuration settings
+        static/
+            index.html             # Web interface
+     test_phishing_email.eml        # Basic test sample
+     test_safe_email.eml            # Safe email sample
+     test_enhanced_phishing_email.eml # Advanced test sample
+     uploads/                       # Temporary file storage
+     logs/                          # Application logs
     """
     story.append(Paragraph(file_structure, code_style))
     

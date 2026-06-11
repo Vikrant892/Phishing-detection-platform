@@ -166,8 +166,7 @@ INSERT INTO `detection_stats` (
     CURDATE(), 0, 0, 0, 0, 0, 0.00
 ) ON DUPLICATE KEY UPDATE stat_date = stat_date;
 
--- Create user for application access (if not exists)
--- Note: In production, use more secure credentials
+-- Application database user. Replace the password below before deploying.
 CREATE USER IF NOT EXISTS 'phishing_app'@'localhost' IDENTIFIED BY 'change_me_in_production';
 CREATE USER IF NOT EXISTS 'phishing_app'@'%' IDENTIFIED BY 'change_me_in_production';
 

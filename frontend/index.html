@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PhishGuard — Phishing Detection Platform</title>
+<title>PhishGuard - Phishing Detection Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -177,7 +177,7 @@ textarea:focus{border-color:var(--coral)}
 <section class="hero">
   <div>
     <h2>Catch the <span>phish</span>.<br>Before it catches you.</h2>
-    <p>Heuristic URL scanner and email header analyser tuned on 2,000 labelled samples from PhishTank and Tranco Top-1M. Regex-first, not a black box — every rule is inspectable.</p>
+    <p>Heuristic URL scanner and email header analyser tuned on 2,000 labelled samples from PhishTank and Tranco Top-1M. Regex-first, not a black box - every rule is inspectable.</p>
     <div class="hero-stats">
       <div><div class="n">0.91</div><div class="l">Precision</div></div>
       <div><div class="n">0.87</div><div class="l">Recall</div></div>
@@ -219,7 +219,7 @@ textarea:focus{border-color:var(--coral)}
 
 <section class="panel">
   <div class="ph">
-    <div><h3>Email Header Analyser</h3><small>Parses RFC 5322 headers — detects SPF/DKIM/DMARC failures and From/Reply-To mismatches</small></div>
+    <div><h3>Email Header Analyser</h3><small>Parses RFC 5322 headers - detects SPF/DKIM/DMARC failures and From/Reply-To mismatches</small></div>
     <div class="tag">parser: rfc5322</div>
   </div>
   <div class="twocol">
@@ -283,9 +283,9 @@ function go(){
   if(!checks){r.innerHTML='<div class="verdict mal"><div class="vbadge">!</div><div><div class="vtitle">Malformed URL</div><div class="vsub">Could not parse the input as a URL</div></div></div>';return}
   let w=0,tot=0;for(const c of checks){tot+=c.w;if(c.st==='f')w+=c.w;else if(c.st==='w')w+=c.w*0.5}
   const risk=Math.min(1,w/tot);
-  let vCls='ben',vT='Benign',vS='No significant rule triggers — safe to visit',vBadge='✓';
-  if(risk>=0.6){vCls='mal';vT='Malicious';vS='High confidence phishing indicators — block & notify user';vBadge='✗'}
-  else if(risk>=0.3){vCls='sus';vT='Suspicious';vS='Sandbox before delivery — multiple weak signals detected';vBadge='?'}
+  let vCls='ben',vT='Benign',vS='No significant rule triggers - safe to visit',vBadge='✓';
+  if(risk>=0.6){vCls='mal';vT='Malicious';vS='High confidence phishing indicators - block & notify user';vBadge='✗'}
+  else if(risk>=0.3){vCls='sus';vT='Suspicious';vS='Sandbox before delivery - multiple weak signals detected';vBadge='?'}
   r.innerHTML='<div class="verdict '+vCls+'"><div class="vbadge">'+vBadge+'</div><div><div class="vtitle">'+vT+'</div><div class="vsub">'+vS+'</div></div><div class="vscore"><div class="n">'+(risk*100).toFixed(0)+'</div><div class="l">Risk Score / 100</div></div></div>'+
     '<div class="checks">'+checks.map(c=>'<div class="check '+c.st+'"><span class="dot"></span><span class="name">'+c.nm+'</span><span class="ev">'+c.ev+'</span></div>').join('')+'</div>';
   addRecent(u,vT,vCls,risk);

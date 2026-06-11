@@ -267,7 +267,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                     <th>Severity</th>
                                                     <th>Description</th>
                                                     <th>Status</th>
-                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -301,20 +300,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                         <span class="badge bg-<?php echo $pattern['is_active'] ? 'success' : 'secondary'; ?>">
                                                             <?php echo $pattern['is_active'] ? 'Active' : 'Inactive'; ?>
                                                         </span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="btn-group btn-group-sm">
-                                                            <button class="btn btn-outline-primary" 
-                                                                    onclick="editPattern(<?php echo $pattern['id']; ?>)" 
-                                                                    title="Edit">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-outline-secondary" 
-                                                                    onclick="togglePattern(<?php echo $pattern['id']; ?>)" 
-                                                                    title="Toggle Status">
-                                                                <i class="fas fa-power-off"></i>
-                                                            </button>
-                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>
@@ -452,14 +437,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <i class="fas fa-heartbeat me-1"></i>
                                             Check System Health
                                         </button>
-                                        <button class="btn btn-outline-warning" onclick="clearCache()">
-                                            <i class="fas fa-broom me-1"></i>
-                                            Clear Cache
-                                        </button>
-                                        <button class="btn btn-outline-info" onclick="downloadLogs()">
-                                            <i class="fas fa-download me-1"></i>
-                                            Download Logs
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -512,16 +489,6 @@ function refreshPatterns() {
     location.reload();
 }
 
-function editPattern(patternId) {
-    // Implementation for editing patterns
-    alert('Pattern editing feature coming soon!');
-}
-
-function togglePattern(patternId) {
-    // Implementation for toggling pattern status
-    alert('Pattern toggle feature coming soon!');
-}
-
 function downloadSample(format) {
     // Generate sample file download
     const samples = {
@@ -565,13 +532,4 @@ function checkSystemHealth() {
         });
 }
 
-function clearCache() {
-    if (confirm('Are you sure you want to clear the system cache?')) {
-        showAlert('info', 'Cache clearing feature coming soon!');
-    }
-}
-
-function downloadLogs() {
-    showAlert('info', 'Log download feature coming soon!');
-}
 </script>

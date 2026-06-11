@@ -45,7 +45,7 @@ ALLOWED_EXTENSIONS = {'eml', 'msg', 'txt', 'csv', 'xlsx', 'xls', 'json'}
 # Initialize enhanced email analyzer
 html_analyzer = EmailHTMLAnalyzer()
 
-# Initialize database (best-effort; do not crash the app if DB init fails —
+# Initialize database (best-effort; do not crash the app if DB init fails -
 # Spaces should still boot so users can hit the UI / health endpoint).
 try:
     db_manager.create_tables()
